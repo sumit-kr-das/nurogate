@@ -24,7 +24,7 @@ export const AuthModel = {
 		user: t.String(),
 	}),
 	signUpInvalid: t.Literal("Invalid username or password"),
-};
+} as const;
 
 export type AuthModelType = {
 	[k in keyof typeof AuthModel]: UnwrapSchema<(typeof AuthModel)[k]>;
