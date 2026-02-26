@@ -9,6 +9,10 @@ export const AuthModel = {
 	signInResponse: t.Object({
 		token: t.String(),
 	}),
+	signInServiceResponse: t.Object({
+		userId: t.String(),
+		email: t.String(),
+	}),
 	signInInvalid: t.Literal("Invalid username or password"),
 
 	/* Sign Up */
@@ -17,7 +21,7 @@ export const AuthModel = {
 		password: t.String(),
 	}),
 	signUpResponse: t.Object({
-		token: t.String(),
+		user: t.String(),
 	}),
 	signUpInvalid: t.Literal("Invalid username or password"),
 };
