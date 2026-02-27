@@ -42,7 +42,6 @@ export const app = new Elysia({ prefix: "api-key" })
 	.get(
 		"/",
 		async ({ userId }) => {
-			console.log("user id", userId);
 			const apiKeys = await ApiKeyService.getApiKeys({
 				userId: Number(userId),
 			});
@@ -54,5 +53,27 @@ export const app = new Elysia({ prefix: "api-key" })
 				200: ApiKeyModel.getApiKeysResponse,
 			},
 		},
+	)
+	.put(
+		"/disable-status",
+		async ({ userId, body, status }) => {
+			try {
+				await ApiKeyService.disableStatus(Number(userId), body);
+
+				return {
+					message: "Api key status updated",
+				};
+			} catch (err) {
+				return status(411, {
+					message: "Api key status update failed",
+				});
+			}
+		},
+		{
+			body: ApiKeyModel.disableApiKeysBody,
+			respnse: {
+				200: ApiKeyModel.disableApiKeyResponse,
+				411: ApiKeyModel.disableApiKeyFailedResponse,
+			},
+		},
 	);
-// .post("/disable", () => {});

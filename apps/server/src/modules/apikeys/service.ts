@@ -41,4 +41,19 @@ export abstract class ApiKeyService {
 			})),
 		};
 	}
+	static async disableStatus(
+		userId: number,
+		body: ApiKeyModelType["disableApiKeysBody"],
+	) {
+		const {id, disabled} = body
+		await prisma.apiKey.update({
+			where: {
+				id,
+				userId,
+			},
+			data: {
+				disabled,
+			},
+		});
+	}
 }

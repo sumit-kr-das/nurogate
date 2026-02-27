@@ -28,6 +28,18 @@ export const ApiKeyModel = {
 			}),
 		),
 	}),
+	/* Disable Status */
+	disableApiKeysBody: t.Object({
+		id: t.Number(),
+		// userId: t.Number(),
+		disabled: t.Boolean(),
+	}),
+	disableApiKeyResponse: t.Object({
+		message: t.Literal("Api key status updated"),
+	}),
+	disableApiKeyFailedResponse: t.Object({
+		message: t.Literal("Api key status update failed"),
+	}),
 } as const;
 
 export type ApiKeyModelType = {
