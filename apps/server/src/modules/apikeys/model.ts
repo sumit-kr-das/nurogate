@@ -40,6 +40,13 @@ export const ApiKeyModel = {
 	disableApiKeyFailedResponse: t.Object({
 		message: t.Literal("Api key status update failed"),
 	}),
+	/* Delete Api Key */
+	deleteApiKeyResponse: t.Object({
+		message: t.Literal("Api key deleted successfully"),
+	}),
+	deleteApiKeyFailedResponse: t.Object({
+		message: t.Literal("Api key deletetion failed"),
+	}),
 } as const;
 
 export type ApiKeyModelType = {

@@ -45,7 +45,7 @@ export abstract class ApiKeyService {
 		userId: number,
 		body: ApiKeyModelType["disableApiKeysBody"],
 	) {
-		const {id, disabled} = body
+		const { id, disabled } = body;
 		await prisma.apiKey.update({
 			where: {
 				id,
@@ -53,6 +53,17 @@ export abstract class ApiKeyService {
 			},
 			data: {
 				disabled,
+			},
+		});
+	}
+	static async deleteApiKey(id: number, userId: number) {
+		await prisma.apiKey.update({
+			where: {
+				id,
+				userId,
+			},
+			data: {
+				deleted: true,
 			},
 		});
 	}
