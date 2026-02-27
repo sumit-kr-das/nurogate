@@ -21,4 +21,24 @@ export abstract class ApiKeyService {
 			apiKey: newApiKey.apiKey,
 		};
 	}
+	static async getApiKeys(
+		data: ApiKeyModelType["getApiKeysBody"],
+	): Promise<ApiKeyModelType["getApiKeysResponse"]> {
+		const apiKeys = await prisma.apiKey.findMany({
+			where: {
+				userId: data.userId,
+				deleted: false,
+			},
+		});
+		return {
+			apiKeys: apiKeys.map((apiKey) => ({
+				id: apiKey.id.toString(),
+				apiKey: apiKey.apiKey,
+				name: apiKey.name,
+				credisConsumed: apiKey.creditsConsumed,
+				lastUsed: apiKey.lastUsed,
+				disabled: apiKey.disabled,
+			})),
+		};
+	}
 }

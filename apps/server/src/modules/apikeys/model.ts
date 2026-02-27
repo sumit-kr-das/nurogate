@@ -9,8 +9,25 @@ export const ApiKeyModel = {
 		id: t.Number(),
 		apiKey: t.String(),
 	}),
-	createApiKeySuccess: t.Literal("Api Key Created Successfully"),
+	createApiKeySuccess: t.Object({
+		message: t.Literal("Api Key Created Successfully"),
+	}),
 	/* Get Api Keys */
+	getApiKeysBody: t.Object({
+		userId: t.Number(),
+	}),
+	getApiKeysResponse: t.Object({
+		apiKeys: t.Array(
+			t.Object({
+				id: t.String(),
+				apiKey: t.String(),
+				name: t.String(),
+				credisConsumed: t.Number(),
+				lastUsed: t.Nullable(t.Date()),
+				disabled: t.Boolean(),
+			}),
+		),
+	}),
 } as const;
 
 export type ApiKeyModelType = {

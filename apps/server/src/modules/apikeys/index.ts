@@ -23,7 +23,6 @@ export const app = new Elysia({ prefix: "api-key" })
 	.post(
 		"/",
 		async ({ userId, body }) => {
-			console.log("playing");
 			const { id, apiKey } = await ApiKeyService.createApiKey(
 				body.name,
 				Number(userId),
@@ -39,6 +38,21 @@ export const app = new Elysia({ prefix: "api-key" })
 				200: ApiKeyModel.createApiKeyResponse,
 			},
 		},
+	)
+	.get(
+		"/",
+		async ({ userId }) => {
+			console.log("user id", userId);
+			const apiKeys = await ApiKeyService.getApiKeys({
+				userId: Number(userId),
+			});
+			return apiKeys;
+		},
+		{
+			body: ApiKeyModel.getApiKeysBody,
+			response: {
+				200: ApiKeyModel.getApiKeysResponse,
+			},
+		},
 	);
-// .get("/", () => {})
 // .post("/disable", () => {});
