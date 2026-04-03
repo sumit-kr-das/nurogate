@@ -62,4 +62,12 @@ export const app = new Elysia({
 				400: AuthModel.signInInvalid,
 			},
 		},
-	);
+	)
+	.post("sign-out", ({ cookie: { auth } }) => {
+		auth.set({
+			value: "",
+			httpOnly: true,
+			maxAge: 0,
+		});
+		return { message: "Signed out" };
+	});

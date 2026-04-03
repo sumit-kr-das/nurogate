@@ -48,7 +48,6 @@ export const app = new Elysia({ prefix: "api-key" })
 			return apiKeys;
 		},
 		{
-			body: ApiKeyModel.getApiKeysBody,
 			response: {
 				200: ApiKeyModel.getApiKeysResponse,
 			},

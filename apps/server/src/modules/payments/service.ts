@@ -27,4 +27,13 @@ export abstract class PaymentsService {
 
         return user.credits;
     }
+
+	static async getBalance(userId: number) {
+		const user = await prisma.user.findUnique({
+			where: { id: userId },
+			select: { credits: true },
+		});
+
+		return user?.credits ?? 0;
+	}
 }

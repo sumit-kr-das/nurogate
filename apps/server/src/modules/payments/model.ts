@@ -13,4 +13,10 @@ export namespace PaymentsModel {
     })
 
     export type onrampFailedResponseSchema = typeof onrampFailedResponseSchema.static;
+
+	export const balanceResponseSchema = t.Object({
+		credits: t.Number(),
+	});
+
+	export type balanceResponseSchema = typeof balanceResponseSchema.static;
 }
