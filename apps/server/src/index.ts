@@ -1,9 +1,15 @@
-import { Elysia } from "elysia";
-import { app as authRouter } from "./modules/auth";
-import { app as apiKeyRouter } from "./modules/apikeys";
+import cors from "@elysiajs/cors";
 import "dotenv/config";
+import { app } from "./app";
 
-const app = new Elysia().use(authRouter).use(apiKeyRouter).listen(3000);
+app
+	.use(
+		cors({
+			origin: "http://localhost:3001",
+			credentials: true,
+		}),
+	)
+	.listen(3000);
 
 console.log(
 	`🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`,

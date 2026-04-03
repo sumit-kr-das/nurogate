@@ -1,5 +1,5 @@
 {
-  "name": "NeuroGate",
+  "name": "neurogate",
   "private": true,
   "scripts": {
     "build": "turbo run build",
@@ -8,13 +8,14 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types"
   },
+  "overrides": {
+    "elysia": "1.4.27"
+  },
   "devDependencies": {
+    "elysia": "1.4.27",
     "prettier": "^3.7.4",
     "turbo": "^2.8.10",
     "typescript": "5.9.2"
-  },
-  "engines": {
-    "node": ">=18"
   },
   "packageManager": "bun@1.3.5",
   "workspaces": [
