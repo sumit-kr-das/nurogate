@@ -7,11 +7,15 @@ function extractSystem(messages: ChatMessage[]): string | undefined {
   return parts.join("\n");
 }
 
-function stripSystem(messages: ChatMessage[]): Array<{ role: "user" | "assistant"; content: string }> {
-  return messages
-    .filter((m) => m.role !== "system")
-    .map((m) => ({ role: m.role, content: m.content }))
-    .filter((m) => m.role === "user" || m.role === "assistant");
+function stripSystem(
+	messages: ChatMessage[],
+): Array<{ role: "user" | "assistant"; content: string }> {
+	return messages
+		.filter(
+			(m): m is ChatMessage & { role: "user" | "assistant" } =>
+				m.role === "user" || m.role === "assistant",
+		)
+		.map((m) => ({ role: m.role, content: m.content }));
 }
 
 type AnthropicMessageResponse = {
@@ -87,4 +91,3 @@ export class ClaudeProvider implements LlmProvider {
     };
   }
 }
-

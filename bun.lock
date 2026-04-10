@@ -16,6 +16,8 @@
       "version": "1.0.50",
       "dependencies": {
         "@google/genai": "^1.49.0",
+        "db": "*",
+        "dotenv": "^17.3.1",
         "elysia": "latest",
       },
       "devDependencies": {

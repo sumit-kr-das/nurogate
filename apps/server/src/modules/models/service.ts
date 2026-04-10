@@ -26,6 +26,7 @@ export abstract class ModelsService {
 
         return providers.map(provider => ({
             id: provider.id.toString(),
+            providerKey: provider.providerKey,
             name: provider.name,
             website: provider.website
         }))
@@ -44,10 +45,13 @@ export abstract class ModelsService {
         return mappings.map(mapping => ({
             id: mapping.id.toString(),
             providerId: mapping.provider.id.toString(),
+            providerKey: mapping.provider.providerKey,
             providerName: mapping.provider.name,
             providerWebsite: mapping.provider.website,
+            upstreamModel: mapping.upstreamModel,
             inputTokenCost: mapping.inputTokenCost,
-            outputTokenCost: mapping.outputTokenCost
+            outputTokenCost: mapping.outputTokenCost,
+            enabled: mapping.enabled
         }))
     }
 }

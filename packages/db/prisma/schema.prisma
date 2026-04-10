@@ -47,13 +47,14 @@ model Model {
   id                   Int                    @id @default(autoincrement())
   name                 String
   company_id           Int
-  slug                 String
+  slug                 String                 @unique
   company              Company                @relation(fields: [company_id], references: [id])
   modelProviderMapping ModelProviderMapping[]
 }
 
 model Provider {
   id                   Int                    @id @default(autoincrement())
+  providerKey          String                 @unique
   name                 String
   website              String
   modelProviderMapping ModelProviderMapping[]
@@ -63,11 +64,15 @@ model ModelProviderMapping {
   id              Int            @id @default(autoincrement())
   modelId         Int
   providerId      Int
+  upstreamModel   String
   inputTokenCost  Int
   outputTokenCost Int
+  enabled         Boolean        @default(true)
   model           Model          @relation(fields: [modelId], references: [id])
   provider        Provider       @relation(fields: [providerId], references: [id])
   conversations   Conversation[]
+
+  @@unique([modelId, providerId])
 }
 
 model OnrampTransaction {

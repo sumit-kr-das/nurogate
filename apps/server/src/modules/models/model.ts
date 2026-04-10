@@ -19,6 +19,7 @@ export namespace ModelsModel {
     export const getProvidersResponseSchema = t.Object({
         providers: t.Array(t.Object({
             id: t.String(),
+            providerKey: t.String(),
             name: t.String(),
             website: t.String()
         }))
@@ -30,10 +31,13 @@ export namespace ModelsModel {
         providers: t.Array(t.Object({
             id: t.String(),
             providerId: t.String(),
+            providerKey: t.String(),
             providerName: t.String(),
             providerWebsite: t.String(),
+            upstreamModel: t.String(),
             inputTokenCost: t.Number(),
-            outputTokenCost: t.Number()
+            outputTokenCost: t.Number(),
+            enabled: t.Boolean()
         }))
     })
 
